@@ -2,8 +2,6 @@ name: Build and Package IPA
 
 on:
   push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -16,11 +14,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Ensure main utils are installed
-        run: |
-          brew install coreutils xz
-          brew install ldid
-          echo 'export PATH="/usr/local/bin:$PATH"' >> $HOME/.bash_profile
-          source $HOME/.bash_profile
+        uses: dhinakg/procursus-action@main
+        with:
+          packages: coreutils make xz ldid
 
       - name: Install Theos
         run: |
@@ -41,9 +37,8 @@ jobs:
           fi
           cd $GITHUB_WORKSPACE/Payload
           zip -r $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.ipa .
-
+        
       - name: Upload IPA
-        if: success()
         uses: actions/upload-artifact@v3
         with:
           name: com.yellowcat98.sillyiosapp.ipa
