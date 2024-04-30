@@ -23,15 +23,14 @@ jobs:
           git clone --recursive https://github.com/theos/theos.git ~/theos
           export THEOS=~/theos
 
-      - name: Compile Tweak
-        run: make package FINALPACKAGE=1
-
-      - name: Create IPA
+      - name: Compile and Package Tweak
         run: |
-          mkdir -p $GITHUB_WORKSPACE/Payload
-          cp $THEOS/_/Library/MobileSubstrate/DynamicLibraries/*.dylib $GITHUB_WORKSPACE/Payload 2>/dev/null || true
-          cp $THEOS/_/Library/MobileSubstrate/DynamicLibraries/*.plist $GITHUB_WORKSPACE/Payload 2>/dev/null || true
-          zip -r $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.ipa $GITHUB_WORKSPACE/Payload/*
+          make package FINALPACKAGE=1
+          # Move the generated IPA file to the root directory
+          mv *.ipa $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.ipa || true
+        env:
+          CPATH: :/opt/procursus/include
+          LIBRARY_PATH: :/opt/procursus/lib
 
       - name: Upload IPA
         uses: actions/upload-artifact@v3
