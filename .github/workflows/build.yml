@@ -42,8 +42,8 @@ jobs:
           git submodule update
           gmake package FINALPACKAGE=1
 
-      - name: List contents of packages directory
-        run: ls -laR packages/../..
+      - name: Caught you lil bro 😈
+        run: find packages -type f -name "*.ipa"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
