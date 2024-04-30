@@ -42,11 +42,8 @@ jobs:
           git submodule update
           gmake package FINALPACKAGE=1
 
-      - name: Echo Root
-        run: ls -la
-
       - name: List contents of packages directory
-        run: ls -la packages/./
+        run: ls -laR packages/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
