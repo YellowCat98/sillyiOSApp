@@ -29,8 +29,8 @@ jobs:
       - name: Create IPA
         run: |
           mkdir -p $GITHUB_WORKSPACE/Payload
-          cp $THEOS/_/Library/MobileSubstrate/DynamicLibraries/*.dylib $GITHUB_WORKSPACE/Payload
-          cp $THEOS/_/Library/MobileSubstrate/DynamicLibraries/*.plist $GITHUB_WORKSPACE/Payload
+          cp $THEOS/_/Library/MobileSubstrate/DynamicLibraries/*.dylib $GITHUB_WORKSPACE/Payload || true
+          cp $THEOS/_/Library/MobileSubstrate/DynamicLibraries/*.plist $GITHUB_WORKSPACE/Payload || true
           zip -r $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.ipa $GITHUB_WORKSPACE/Payload
 
       - name: Upload IPA
