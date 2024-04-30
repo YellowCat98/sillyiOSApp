@@ -42,8 +42,8 @@ jobs:
           git submodule update
           gmake package FINALPACKAGE=1
 
-      - name: Caught you lil bro 😈
-        run: ls -la /..
+      - name: Get IPA
+        run: ls -la packages
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
