@@ -18,9 +18,13 @@ jobs:
         with:
           packages: coreutils make xz ldid
 
+      - name: Install Theos
+        run: |
+          git clone --recursive https://github.com/theos/theos.git ~/theos
+          export THEOS=~/theos
+
       - name: Compile and Package Tweak
         run: |
-          export THEOS=theos
           make package FINALPACKAGE=1
         env:
           CPATH: :/opt/procursus/include
