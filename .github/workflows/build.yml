@@ -29,5 +29,5 @@ jobs:
       - name: Upload IPA
         uses: actions/upload-artifact@v2
         with:
-          name: YourTweakName.ipa
-          path: YourTweakName/packages/*.ipa
+          name: com.yellowcat98.sillyiosapp.ipa
+          path: packages/*.ipa
