@@ -1,4 +1,4 @@
-name: Build
+name: Build and Package IPA
 
 on:
   push:
@@ -13,35 +13,33 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Checkout theos/theos
-        uses: actions/checkout@main
-        with:
-          repository: theos/theos
-          ref: master
-          submodules: recursive
-          path: theos
-
-      - name: Checkout theos/sdks
-        uses: actions/checkout@main
-        with:
-          repository: theos/sdks
-          ref: master
-          sparse-checkout: iPhoneOS16.5.sdk
-          path: theos/sdks
-
       - name: Ensure main utils are installed
+        uses: dhinakg/procursus-action@main
+        with:
+          packages: coreutils make xz ldid
+
+      - name: Install Theos
         run: |
-          brew install coreutils xz ldid
+          git clone --recursive https://github.com/theos/theos.git ~/theos
+          export THEOS=~/theos
 
-      - name: Build
+      - name: Compile Tweak
+        run: make package FINALPACKAGE=1
+
+      - name: Create IPA
         run: |
-          export THEOS=theos
-
-          cd $GITHUB_WORKSPACE
-          make package FINALPACKAGE=1
-
-      - name: Upload artifact
+          mkdir -p $GITHUB_WORKSPACE/Payload
+          cp $THEOS/_/Library/MobileSubstrate/DynamicLibraries/*.dylib $GITHUB_WORKSPACE/Payload 2>/dev/null || true
+          cp $THEOS/_/Library/MobileSubstrate/DynamicLibraries/*.plist $GITHUB_WORKSPACE/Payload 2>/dev/null || true
+          if [ -z "$(ls -A $GITHUB_WORKSPACE/Payload)" ]; then
+            echo "No dylib or plist files found."
+            exit 1
+          fi
+          cd $GITHUB_WORKSPACE/Payload
+          zip -r $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.ipa .
+        
+      - name: Upload IPA
         uses: actions/upload-artifact@v3
         with:
           name: com.yellowcat98.sillyiosapp.ipa
-          path: $GITHUB_WORKSPACE/packages/*.ipa
+          path: $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.ipa
