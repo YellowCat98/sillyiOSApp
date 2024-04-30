@@ -14,8 +14,6 @@ Tweak_FILES = hello.m
 Tweak_INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries
 Tweak_FRAMEWORKS = Foundation UIKit
 
-# Specify the package format as ipa
-PACKAGE_FORMAT = ipa
 
 # Include tweak settings from Theos
 include $(THEOS_MAKE_PATH)/tweak.mk

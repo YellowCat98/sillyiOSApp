@@ -25,7 +25,7 @@ jobs:
 
       - name: Compile and Package Tweak
         run: |
-          make package FINALPACKAGE=1
+          make package PACKAGE_FORMAT=ipa
           # Determine the relative path of the .ipa file
           ipa_FILE=$(basename $(ls ./packages/*.ipa))
           echo "ipa_FILE=$ipa_FILE" >> $GITHUB_ENV
