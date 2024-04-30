@@ -43,7 +43,7 @@ jobs:
           gmake package FINALPACKAGE=1
 
       - name: Echo Root Dir
-        run: ls -la
+        run: ls -laR /
 
       - name: List contents of packages directory
         run: ls -la packages/
