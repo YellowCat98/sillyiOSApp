@@ -46,7 +46,7 @@ jobs:
         run: |
           shopt -s nullglob
           ipa_files=(./*.ipa)
-          if [ -z "$ipa_file" ]; then
+          if [ ${#ipa_files[@]} -eq 0 ]; then
             echo "No .ipa file found."
             exit 1
           else
