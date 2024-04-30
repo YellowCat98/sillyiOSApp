@@ -43,7 +43,7 @@ jobs:
           gmake package FINALPACKAGE=1
 
       - name: Caught you lil bro 😈
-        run: ls -la
+        run: ls -la /
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
