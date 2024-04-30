@@ -31,8 +31,13 @@ jobs:
           mkdir -p $GITHUB_WORKSPACE/Payload
           cp $THEOS/_/Library/MobileSubstrate/DynamicLibraries/*.dylib $GITHUB_WORKSPACE/Payload 2>/dev/null || true
           cp $THEOS/_/Library/MobileSubstrate/DynamicLibraries/*.plist $GITHUB_WORKSPACE/Payload 2>/dev/null || true
-          zip -r $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.ipa $GITHUB_WORKSPACE/Payload/*
-
+          if [ -z "$(ls -A $GITHUB_WORKSPACE/Payload)" ]; then
+            echo "No dylib or plist files found."
+            exit 1
+          fi
+          cd $GITHUB_WORKSPACE/Payload
+          zip -r $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.ipa .
+        
       - name: Upload IPA
         uses: actions/upload-artifact@v3
         with:
