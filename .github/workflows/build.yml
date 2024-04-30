@@ -26,8 +26,9 @@ jobs:
       - name: Compile and Package Tweak
         run: |
           make package FINALPACKAGE=1
-          ls -l ./packages/
-          mv ./packages/com.yellowcat98.sillyiosapp_*.deb $GITHUB_WORKSPACE/ || true
+          DEB_FILE=$(ls -l ./packages/*.deb)
+          echo "DEB_FILE=$DEB_FILE" >> $GITHUB_ENV
+          mv $DEB_FILE $GITHUB_WORKSPACE/
         env:
           CPATH: :/opt/procursus/include
           LIBRARY_PATH: :/opt/procursus/lib
@@ -36,4 +37,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: com.yellowcat98.sillyiosapp.deb
-          path: $GITHUB_WORKSPACE/*.deb
+          path: ${{ env.DEB_FILE }}
