@@ -26,6 +26,8 @@ jobs:
       - name: Compile and Package Tweak
         run: |
           make package FINALPACKAGE=1
+          # Move IPA file to artifacts directory
+          mv *.ipa $HOME/artifacts/
         env:
           CPATH: :/opt/procursus/include
           LIBRARY_PATH: :/opt/procursus/lib
