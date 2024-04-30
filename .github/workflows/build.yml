@@ -27,7 +27,7 @@ jobs:
         run: |
           make package FINALPACKAGE=1
           # Move the generated .deb file to the root directory
-          mv ./packages/*.deb $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.deb || true
+          mv ./packages/*.deb $GITHUB_WORKSPACE/ || true
         env:
           CPATH: :/opt/procursus/include
           LIBRARY_PATH: :/opt/procursus/lib
@@ -36,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: com.yellowcat98.sillyiosapp.deb
-          path: $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.deb
+          path: $GITHUB_WORKSPACE/*.deb
