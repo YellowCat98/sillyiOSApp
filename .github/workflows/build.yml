@@ -49,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: com.yellowcat98.sillyiosapp.ipa
-          path: packages/*.ipa
+          path: '*.ipa'
