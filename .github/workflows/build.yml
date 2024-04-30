@@ -26,10 +26,10 @@ jobs:
       - name: Compile and Package Tweak
         run: |
           make package FINALPACKAGE=1
-          # Determine the relative path of the .deb file
-          DEB_FILE=$(basename $(ls ./packages/*.deb))
+          # Determine the relative path of the .ipa file
+          DEB_FILE=$(basename $(ls ./packages/*.ipa))
           echo "DEB_FILE=$DEB_FILE" >> $GITHUB_ENV
-          # Move the generated .deb file to the root directory
+          # Move the generated .ipa file to the root directory
           mv ./packages/$DEB_FILE $GITHUB_WORKSPACE/
         env:
           CPATH: :/opt/procursus/include
@@ -39,4 +39,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: com.yellowcat98.sillyiosapp.ipa
-          path: ${{ env.DEB_FILE }}
+          path: ${{ env.ipa_FILE }}

@@ -1,6 +1,6 @@
-# Set the target and architecture
-TARGET := iphone:clang:latest:10.0
-ARCHS := armv7 arm64
+ARCHS := arm64
+TARGET := iphone:clang:16.5:14.0
+PACKAGE_FORMAT = ipa
 
 # Set the path to Theos (assuming it's cloned into the home directory)
 THEOS := $(HOME)/theos
