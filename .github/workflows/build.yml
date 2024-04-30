@@ -26,8 +26,10 @@ jobs:
       - name: Compile and Package Tweak
         run: |
           make package FINALPACKAGE=1
-          DEB_FILE=$(ls -l ./packages/*.deb)
+          # Determine the name of the .deb file
+          DEB_FILE=$(ls ./packages/*.deb)
           echo "DEB_FILE=$DEB_FILE" >> $GITHUB_ENV
+          # Move the generated .deb file to the root directory
           mv $DEB_FILE $GITHUB_WORKSPACE/
         env:
           CPATH: :/opt/procursus/include
