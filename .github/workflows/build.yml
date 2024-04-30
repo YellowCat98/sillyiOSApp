@@ -48,5 +48,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: com.yellowcat98.sillyiosapp.ipa 
-          path: packages/*.ipa
+          name: com.yellowcat98.sillyiosapp.ipa
+          path: com.yellowcat98.sillyiosapp*.ipa
