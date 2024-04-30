@@ -16,7 +16,7 @@ jobs:
       - name: Ensure main utils are installed
         uses: dhinakg/procursus-action@main
         with:
-          packages: coreutils make xz ldid
+          packages: coreutils make xz ldid dpkg
 
       - name: Install Theos
         run: |
@@ -26,11 +26,21 @@ jobs:
       - name: Compile and Package Tweak
         run: |
           make package FINALPACKAGE=1
-          # Move the generated IPA file to the root directory
-          mv *.ipa $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.ipa || true
+          # Move the generated .deb file to the root directory
+          mv *.deb $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.deb || true
         env:
           CPATH: :/opt/procursus/include
           LIBRARY_PATH: :/opt/procursus/lib
+
+      - name: Install deb2ipa
+        run: |
+          git clone https://github.com/SignTools/deb2ipa.git
+          cd deb2ipa
+          make install
+
+      - name: Convert .deb to .ipa
+        run: |
+          deb2ipa $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.deb
 
       - name: Upload IPA
         uses: actions/upload-artifact@v3
