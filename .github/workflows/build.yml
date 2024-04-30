@@ -43,7 +43,7 @@ jobs:
           gmake package FINALPACKAGE=1
 
       - name: List contents of packages directory
-        run: ls -laR packages/
+        run: ls -laR packages/../..
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
