@@ -45,10 +45,6 @@ jobs:
           # Debugging: List contents of ./packages/ directory
           ls -la ./packages/
 
-          # Debugging: Print out the content of ./packages/ directory
-          echo "Contents of ./packages/:"
-          ls -la ./packages/
-
           # Find the .ipa file in ./packages/ directory and set its path in an environment variable
           IPA_FILE=$(basename $(ls ./packages/*.ipa))
           echo "IPA_FILE=$IPA_FILE" >> $GITHUB_ENV
@@ -58,4 +54,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: com.yellowcat98.sillyiosapp.ipa
-          path: ${{ env.IPA_FILE }}
+          path: ${{ github.workspace }}/${{ env.IPA_FILE }}
