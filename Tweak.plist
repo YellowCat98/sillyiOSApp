@@ -5,7 +5,6 @@
     <key>Filter</key>
     <array>
         <string>com.apple.SpringBoard</string>
-        <!-- Add more bundle identifiers here if needed -->
     </array>
 </dict>
 </plist>
