@@ -26,6 +26,8 @@ jobs:
       - name: Compile and Package Tweak
         run: |
           make package FINALPACKAGE=1
+          # Move the generated IPA to a known location
+          mv *.ipa $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.ipa
         env:
           CPATH: :/opt/procursus/include
           LIBRARY_PATH: :/opt/procursus/lib
@@ -34,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: com.yellowcat98.sillyiosapp.ipa
-          path: packages/*.ipa
+          path: com.yellowcat98.sillyiosapp.ipa
