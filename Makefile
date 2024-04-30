@@ -3,7 +3,7 @@ TARGET := iphone:clang:16.5:14.0
 PACKAGE_FORMAT = ipa
 
 # Set the path to Theos (assuming it's cloned into the home directory)
-THEOS := $(HOME)/theos
+THEOS := $(CURDIR)/theos
 
 # Include common settings from Theos
 include $(THEOS)/makefiles/common.mk

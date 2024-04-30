@@ -36,7 +36,7 @@ jobs:
           
       - name: Build
         run: |
-          export THEOS=${{ github.workspace }}/theos
+          export THEOS=$HOME/theos
 
           git submodule init
           git submodule update
