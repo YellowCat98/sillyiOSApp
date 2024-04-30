@@ -15,7 +15,7 @@ Tweak_INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries
 Tweak_FRAMEWORKS = Foundation UIKit
 
 # Specify the output directory
-PACKAGE_PATH := $(THEOS_PROJECT_DIR)
+PACKAGE_PATH := /Users/runner/work/sillyiOSApp/sillyiOSApp/ # im smart
 
 # Include tweak settings from Theos
 include $(THEOS_MAKE_PATH)/tweak.mk
