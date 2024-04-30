@@ -42,13 +42,11 @@ jobs:
           git submodule update
           make package
 
-          # Debugging: List contents of ./packages/ directory
-          ls -la ./packages/
+          # Debugging: List contents of root directory
+          ls -la
 
-          # Find the .ipa file in ./packages/ directory and set its path in an environment variable
-          IPA_FILE=$(basename $(ls ./packages/*.ipa))
-          echo "IPA_FILE=$IPA_FILE" >> $GITHUB_ENV
-          mv ./packages/$IPA_FILE $GITHUB_WORKSPACE/
+          # Set the IPA_FILE environment variable to the desired output name
+          echo "IPA_FILE=com.yellowcat98.sillyiosapp.ipa" >> $GITHUB_ENV
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3

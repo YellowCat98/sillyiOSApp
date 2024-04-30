@@ -14,10 +14,12 @@ Tweak_FILES = hello.m
 Tweak_INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries
 Tweak_FRAMEWORKS = Foundation UIKit
 
+# Specify the output directory
+PACKAGE_PATH := $(THEOS_PROJECT_DIR)
 
 # Include tweak settings from Theos
 include $(THEOS_MAKE_PATH)/tweak.mk
 
 # Run this command after installing the tweak
 after-install::
-	install.exec "killall -9 SpringBoard"
+    install.exec "killall -9 SpringBoard"
