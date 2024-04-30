@@ -10,9 +10,9 @@ include $(THEOS)/makefiles/common.mk
 
 # Define your tweak
 TWEAK_NAME = Tweak
-MyCoolTweak_FILES = hello.m
-MyCoolTweak_INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries
-MyCoolTweak_FRAMEWORKS = Foundation UIKit
+Tweak_FILES = hello.m
+Tweak_INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries
+Tweak_FRAMEWORKS = Foundation UIKit
 
 # Include tweak settings from Theos
 include $(THEOS_MAKE_PATH)/tweak.mk
