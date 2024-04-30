@@ -31,7 +31,7 @@ jobs:
           LIBRARY_PATH: :/opt/procursus/lib
 
       - name: Upload IPA
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: com.yellowcat98.sillyiosapp.ipa
-          path: ${{ steps.build.outputs.build-output }}
+          path: packages/*.ipa
