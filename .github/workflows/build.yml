@@ -42,11 +42,15 @@ jobs:
           git submodule update
           gmake package FINALPACKAGE=1
 
+      - name: Move IPA to packages directory
+        run: |
+          mv ./*.ipa packages/
+
       - name: List contents of packages directory
-        run: ls -la packages
+        run: ls -la packages/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: com.yellowcat98.sillyiosapp.ipa
-          path: '*.ipa'
+          path: packages/*.ipa
