@@ -40,16 +40,13 @@ jobs:
 
           git submodule init
           git submodule update
-          make package
+          gmake package FINALPACKAGE=1
 
-          # Debugging: List contents of root directory
-          ls -la
-
-          # Set the IPA_FILE environment variable to the desired output name
-          echo "IPA_FILE=com.yellowcat98.sillyiosapp.ipa" >> $GITHUB_ENV
+      - name: List contents of packages directory
+        run: ls -la packages
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: com.yellowcat98.sillyiosapp.ipa
-          path: ${{ github.workspace }}/${{ env.IPA_FILE }}
+          path: $HOME/*.ipa
