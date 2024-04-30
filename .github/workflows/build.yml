@@ -46,7 +46,7 @@ jobs:
         run: ls -la
 
       - name: List contents of packages directory
-        run: ls -la packages/.
+        run: ls -la packages/./
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
