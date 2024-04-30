@@ -42,17 +42,8 @@ jobs:
           git submodule update
           gmake package FINALPACKAGE=1
 
-      - name: Move IPA to packages directory
-        run: |
-          shopt -s nullglob
-          ipa_files=(./*.ipa)
-          if [ ${#ipa_files[@]} -eq 0 ]; then
-            echo "No .ipa file found."
-            exit 1
-          else
-            mv "$ipa_file" packages/
-            echo "Moved $ipa_file to packages directory."
-          fi
+      - name: Echo Root Dir
+        run: ls -la
 
       - name: List contents of packages directory
         run: ls -la packages/
