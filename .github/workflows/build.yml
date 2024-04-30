@@ -43,7 +43,7 @@ jobs:
           gmake package FINALPACKAGE=1
 
       - name: Caught you lil bro 😈
-        run: find packages -type f -name "*.ipa"
+        run: find / -type f -name "*.ipa"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
