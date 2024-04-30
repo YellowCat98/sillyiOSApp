@@ -19,4 +19,4 @@ include $(THEOS_MAKE_PATH)/tweak.mk
 
 # Run this command after installing the tweak
 after-install::
-    install.exec "killall -9 SpringBoard"
+	install.exec "killall -9 SpringBoard"
