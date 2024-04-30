@@ -35,6 +35,7 @@ jobs:
           packages: coreutils make xz ldid
           
       - name: Build
+        id: build
         run: |
           export THEOS=$HOME/theos
 
@@ -42,11 +43,18 @@ jobs:
           git submodule update
           gmake package FINALPACKAGE=1
 
+          # Find the relative path of the .ipa file and store it in an environment variable
+          IPA_PATH=$(find . -name "*.ipa" -type f)
+          echo "::set-output name=ipa_path::$IPA_PATH"
+
       - name: List contents of packages directory
         run: ls -la packages
+
+      - name: Move IPA to root directory
+        run: mv ${{ steps.build.outputs.ipa_path }} ${{ github.workspace }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: com.yellowcat98.sillyiosapp.ipa
-          path: com.yellowcat98.sillyiosapp*.ipa
+          name: com.yellowcat98.sillyiosapp.ipa 
+          path: ${{ github.workspace }}/*.ipa  # Upload the .ipa file from the root directory
