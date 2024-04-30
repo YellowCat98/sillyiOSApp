@@ -26,8 +26,8 @@ jobs:
       - name: Compile and Package Tweak
         run: |
           make package FINALPACKAGE=1
-          # Move the generated IPA to a known location
-          mv *.ipa $GITHUB_WORKSPACE/com.yellowcat98.sillyiosapp.ipa
+          # Rename the generated IPA file to a standardized name
+          mv *.ipa com.yellowcat98.sillyiosapp.ipa
         env:
           CPATH: :/opt/procursus/include
           LIBRARY_PATH: :/opt/procursus/lib
