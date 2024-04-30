@@ -44,7 +44,8 @@ jobs:
 
       - name: Move IPA to packages directory
         run: |
-          ipa_file=$(find . -maxdepth 1 -name '*.ipa' -print -quit)
+          shopt -s nullglob
+          ipa_files=(./*.ipa)
           if [ -z "$ipa_file" ]; then
             echo "No .ipa file found."
             exit 1
