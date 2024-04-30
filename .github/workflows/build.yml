@@ -42,12 +42,17 @@ jobs:
           git submodule update
           make package
 
+          # Debugging: List contents of ./packages/ directory
+          ls -la ./packages/
+
+          # Debugging: Print out the content of ./packages/ directory
+          echo "Contents of ./packages/:"
+          ls -la ./packages/
+
+          # Find the .ipa file in ./packages/ directory and set its path in an environment variable
           IPA_FILE=$(basename $(ls ./packages/*.ipa))
           echo "IPA_FILE=$IPA_FILE" >> $GITHUB_ENV
           mv ./packages/$IPA_FILE $GITHUB_WORKSPACE/
-
-      - name: List contents of packages directory
-        run: ls -la packages
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
