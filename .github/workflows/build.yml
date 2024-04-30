@@ -18,6 +18,9 @@ jobs:
       - name: Ensure main utils are installed
         run: |
           brew install coreutils xz
+          brew install ldid
+          echo 'export PATH="/usr/local/bin:$PATH"' >> $HOME/.bash_profile
+          source $HOME/.bash_profile
 
       - name: Install Theos
         run: |
