@@ -26,8 +26,8 @@ jobs:
       - name: Compile and Package Tweak
         run: |
           make package FINALPACKAGE=1
-          # Move the generated .deb file to the root directory
-          mv ./packages/*.deb $GITHUB_WORKSPACE/ || true
+          ls -l ./packages/
+          mv ./packages/com.yellowcat98.sillyiosapp_*.deb $GITHUB_WORKSPACE/ || true
         env:
           CPATH: :/opt/procursus/include
           LIBRARY_PATH: :/opt/procursus/lib
