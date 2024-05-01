@@ -10,45 +10,41 @@
     [super viewDidLoad];
     
     // Create a UIButton
-    UIButton *myButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:@"Tap Me" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setBackgroundColor:[UIColor blueColor]];
+    button.frame = CGRectMake(100, 100, 200, 50); // Set button frame (position and size)
     
-    // Set button frame
-    myButton.frame = CGRectMake(100, 200, 200, 50); // x, y, width, height
+    // Add action for button tap
+    [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
-    // Set button title
-    [myButton setTitle:@"Tap Me" forState:UIControlStateNormal];
-    
-    // Set button background color
-    [myButton setBackgroundColor:[UIColor blueColor]];
-    
-    // Add target action for button tap
-    [myButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    
-    // Add button to view
-    [self.view addSubview:myButton];
+    // Add button to the view
+    [self.view addSubview:button];
 }
 
 - (void)buttonTapped:(UIButton *)sender {
     NSLog(@"Button tapped!");
+    // Implement any actions you want to perform when the button is tapped
 }
 
 @end
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-        // Create an instance of MyViewController
-        MyViewController *viewController = [[MyViewController alloc] init];
-        
         // Create a UIWindow
         UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         
-        // Set root view controller
+        // Create an instance of MyViewController
+        MyViewController *viewController = [[MyViewController alloc] init];
+        
+        // Set MyViewController as the root view controller of the window
         window.rootViewController = viewController;
         
-        // Make window visible
+        // Make the window visible
         [window makeKeyAndVisible];
         
-        // Run the app
+        // Start the application's event loop
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([MyViewController class]));
     }
 }
