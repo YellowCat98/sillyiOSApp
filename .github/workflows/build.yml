@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '12'  # Try specifying a different version of Node.js
+          node-version: '14'  # Try specifying a different version of Node.js
           always-auth: false
           check-latest: false
           token: ${{ secrets.GITHUB_TOKEN }}
