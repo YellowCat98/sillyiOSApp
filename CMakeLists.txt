@@ -22,8 +22,9 @@ set_target_properties(mylib PROPERTIES
 set(CMAKE_OBJC_FLAGS "${CMAKE_OBJC_FLAGS} -ObjC")
 
 # Link iOS frameworks
+find_library(FOUNDATION_LIBRARY Foundation)
 target_link_libraries(mylib
-    -framework Foundation
+    ${FOUNDATION_LIBRARY}
     # Add other iOS frameworks here as needed
 )
 
