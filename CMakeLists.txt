@@ -18,17 +18,13 @@ set_target_properties(mylib PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib
 )
 
-# Optionally, set additional compiler flags
-target_compile_options(mylib PRIVATE
-    -Wall
-    -Wextra
-    # Add more options as needed
-)
+# Set Objective-C flags
+set(CMAKE_OBJC_FLAGS "${CMAKE_OBJC_FLAGS} -ObjC")
 
-# Optionally, link against libraries
+# Link iOS frameworks
 target_link_libraries(mylib
-    # Add any libraries here, for example:
-    # -framework Foundation
+    -framework Foundation
+    # Add other iOS frameworks here as needed
 )
 
 # Install the library
