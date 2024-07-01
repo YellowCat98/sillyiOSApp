@@ -1,38 +1,44 @@
-name: Build iOS App
+name: Build .dylib for iOS
 
 on:
   push:
     branches:
-      - main  # Adjust the branch name as needed
-  workflow_dispatch:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
-    name: Build iOS App
-    runs-on: macOS-latest
+    runs-on: macos-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'  # Try specifying a different version of Node.js
-          always-auth: false
-          check-latest: false
-          token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Set up Xcode
+      run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
-      - name: Install CocoaPods
-        run: sudo gem install cocoapods
-        if: success()
+    - name: Install dependencies
+      run: |
+        sudo gem install cocoapods
+        pod install
 
-      - name: Install dependencies
-        run: pod install
-        working-directory: ${{ github.workspace }}
+    - name: Build .dylib
+      run: |
+        xcodebuild -workspace YourWorkspace.xcworkspace \
+                   -scheme YourScheme \
+                   -sdk iphoneos \
+                   -configuration Release \
+                   build
 
-      - name: Build iOS app
-        run: |
-          xcodebuild -workspace YourWorkspace.xcworkspace -scheme YourScheme -sdk iphonesimulator -configuration Debug clean build CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO
-          mkdir -p build
-          xcodebuild -exportArchive -archivePath build/YourApp.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath build
+    - name: Copy .dylib to output directory
+      run: |
+        mkdir -p output
+        cp -R build/Release-iphoneos/*.dylib output/
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dylib
+        path: output/*.dylib
