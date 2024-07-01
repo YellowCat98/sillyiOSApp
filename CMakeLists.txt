@@ -7,7 +7,7 @@ set(CMAKE_OSX_ARCHITECTURES "arm64" CACHE STRING "iOS architectures")
 
 # Specify source files
 set(SOURCES
-    src/hello.m
+    hello.m
 )
 
 # Add a shared library target
