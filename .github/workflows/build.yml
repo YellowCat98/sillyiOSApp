@@ -15,17 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Find Xcode Project
-        id: find_project
-        run: |
-          PROJECT_PATH=$(find . -name '*.xcodeproj' -type d | head -n 1)
-          if [[ -z "$PROJECT_PATH" ]]; then
-            echo "Error: Xcode project not found."
-            exit 1
-          fi
-          echo "$PROJECT_PATH" > project_path.txt
-
-      - name: Install dependencies
+      - name: Install CocoaPods
         run: |
           brew install cocoapods
           pod install
@@ -33,7 +23,7 @@ jobs:
       - name: Read Project Path
         id: read_project_path
         run: |
-          PROJECT_PATH=$(cat project_path.txt)
+          PROJECT_PATH=$(cat project_path.txt)  # Replace with how you determine your project path
           echo "::set-output name=path::$PROJECT_PATH"
 
       - name: Build IPA
