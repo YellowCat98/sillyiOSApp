@@ -11,10 +11,10 @@ set(SOURCES
 )
 
 # Add a library target
-add_library(mylib SHARED ${SOURCES})
+add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 # Set the output directory for the library
-set_target_properties(mylib PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib
 )
 
@@ -26,7 +26,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 # Link iOS frameworks (example with Foundation)
 find_library(FOUNDATION_LIBRARY Foundation)
-target_link_libraries(mylib
+target_link_libraries(${PROJECT_NAME}
     ${FOUNDATION_LIBRARY}
     # Add other iOS frameworks here as needed
 )
