@@ -1,4 +1,4 @@
-name: Build .dylib for iOS
+name: Build and Upload IPA
 
 on:
   push:
@@ -11,39 +11,25 @@ on:
 jobs:
   build:
     runs-on: macos-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: |
-        brew install cmake
-        brew install ninja
+      - name: Install dependencies
+        run: |
+          brew install cocoapods
+          pod install
 
-    - name: Configure CMake
-      run: |
-        mkdir -p build
-        cd build
-        cmake -G Ninja \
-              -DCMAKE_OSX_SYSROOT=iphoneos \
-              -DCMAKE_OSX_ARCHITECTURES=arm64 \
-              -DCMAKE_BUILD_TYPE=Release \
-              -DCMAKE_INSTALL_PREFIX=../install \
-              ..
+      - name: Build IPA
+        run: |
+          xcodebuild -workspace YourApp.xcworkspace -scheme YourScheme -configuration Release -sdk iphoneos build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
-    - name: Build .dylib
-      run: |
-        cd build
-        cmake --build . --target install
+      - name: Archive IPA
+        run: |
+          xcodebuild -exportArchive -archivePath build/YourApp.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath build
 
-    - name: Copy .dylib to output directory
-      run: |
-        mkdir -p output
-        cp -R install/lib/*.dylib output/
-
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: dylib
-        path: output/*.dylib
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: YourApp.ipa
+          path: build/YourApp.ipa
