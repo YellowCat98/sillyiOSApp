@@ -18,14 +18,17 @@ jobs:
       - name: Find Xcode Project
         id: find_project
         run: |
-          find . -name '*.xcodeproj' -type d | head -n 1 > project_path.txt
+          PROJECT_PATH=$(find . -name '*.xcodeproj' -type d | head -n 1)
+          if [[ -z "$PROJECT_PATH" ]]; then
+            echo "Error: Xcode project not found."
+            exit 1
+          fi
+          echo "$PROJECT_PATH" > project_path.txt
 
       - name: Install dependencies
         run: |
           brew install cocoapods
           pod install
-
-
 
       - name: Read Project Path
         id: read_project_path
