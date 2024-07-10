@@ -25,7 +25,7 @@ set(CMAKE_OBJCXX_FLAGS "${CMAKE_OBJCXX_FLAGS} -ObjC++")
 set(CMAKE_CXX_STANDARD 11)
 
 # Link iOS frameworks (example with Foundation)
-find_library(FOUNDATION_LIBRARY Foundation)
+find_library(UIKIT_LIBRARY UIKit)
 target_link_libraries(${PROJECT_NAME}
     ${UIKIT_LIBRARY}
     # Add other iOS frameworks here as needed
