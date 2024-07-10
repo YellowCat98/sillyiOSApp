@@ -1,13 +1,27 @@
-use_frameworks!
+# Uncomment the next line to define a global platform for your project
+platform :ios, '17.0'
 
-platform :ios, '10.0'
+target 'YourApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
 
-target '${POD_NAME}_Example' do
-  pod '${POD_NAME}', :path => '../'
+  # Pods for YourApp
 
-  target '${POD_NAME}_Tests' do
-    inherit! :search_paths
+  # Example pod
+  # pod 'SomePod'
 
-    ${INCLUDED_PODS}
-  end
+end
+
+target 'YourAppTests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for testing
+end
+
+target 'YourAppUITests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for UI testing
 end
