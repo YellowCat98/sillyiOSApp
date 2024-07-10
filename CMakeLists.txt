@@ -1,16 +1,16 @@
 cmake_minimum_required(VERSION 3.10)
-project(MyLib)
+project(MyApp)
 
 # Set iOS specific options
 set(CMAKE_OSX_SYSROOT "iphoneos" CACHE STRING "iOS SDK")
 set(CMAKE_OSX_ARCHITECTURES "arm64" CACHE STRING "iOS architectures")
 
-# Specify source files (Objective-C and Objective-C++)
+# Specify source files (Objective-C++ in this case)
 set(SOURCES
-    hello.mm
+    hello.mm  # Assuming this is your source file (Objective-C++)
 )
 
-# Add a shared library target
+# Add a library target
 add_library(mylib SHARED ${SOURCES})
 
 # Set the output directory for the library
@@ -18,18 +18,15 @@ set_target_properties(mylib PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib
 )
 
-# Set Objective-C and C++ flags
-set(CMAKE_OBJC_FLAGS "${CMAKE_OBJC_FLAGS} -ObjC")
-set(CMAKE_CXX_STANDARD 11)  # Example C++ standard, adjust as needed
+# Set Objective-C++ flags
+set(CMAKE_OBJCXX_FLAGS "${CMAKE_OBJCXX_FLAGS} -ObjC++")
 
-# Link iOS frameworks
+# Set C++ standard (adjust as needed)
+set(CMAKE_CXX_STANDARD 11)
+
+# Link iOS frameworks (example with Foundation)
 find_library(FOUNDATION_LIBRARY Foundation)
 target_link_libraries(mylib
     ${FOUNDATION_LIBRARY}
     # Add other iOS frameworks here as needed
-)
-
-# Install the library
-install(TARGETS mylib
-    LIBRARY DESTINATION lib
 )
