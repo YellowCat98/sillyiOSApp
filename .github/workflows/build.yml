@@ -20,16 +20,27 @@ jobs:
           brew install cocoapods
           pod install
 
+      - name: Find Xcode Project
+        id: find_project
+        run: |
+          find . -name '*.xcodeproj' -type d | head -n 1 > project_path.txt
+
+      - name: Read Project Path
+        id: read_project_path
+        run: |
+          PROJECT_PATH=$(cat project_path.txt)
+          echo "::set-output name=path::$PROJECT_PATH"
+
       - name: Build IPA
         run: |
-          xcodebuild -workspace YourApp.xcworkspace -scheme YourScheme -configuration Release -sdk iphoneos build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -workspace "${{ steps.read_project_path.outputs.path }}/YourApp.xcworkspace" -scheme YourScheme -configuration Release -sdk iphoneos build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
       - name: Archive IPA
         run: |
-          xcodebuild -exportArchive -archivePath build/YourApp.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath build
+          xcodebuild -exportArchive -archivePath "${{ steps.read_project_path.outputs.path }}/build/YourApp.xcarchive" -exportOptionsPlist ExportOptions.plist -exportPath "${{ steps.read_project_path.outputs.path }}/build"
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v2
         with:
           name: YourApp.ipa
-          path: build/YourApp.ipa
+          path: ${{ steps.read_project_path.outputs.path }}/build/YourApp.ipa

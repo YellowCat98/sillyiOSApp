@@ -1,15 +1,17 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '17.0'
 
+# Specify the path to your Xcode project
+project 'path/to/YourApp.xcodeproj'  # Replace with the actual path to your Xcode project
+
 target 'YourApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for YourApp
-
-  # Example pod
-  # pod 'SomePod'
-
+  pod 'Alamofire'  # Replace with any pod you want to include
+  
+  # Add more pods as needed
 end
 
 target 'YourAppTests' do
