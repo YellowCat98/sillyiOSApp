@@ -15,15 +15,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Find Xcode Project
+        id: find_project
+        run: |
+          find . -name '*.xcodeproj' -type d | head -n 1 > project_path.txt
+
       - name: Install dependencies
         run: |
           brew install cocoapods
           pod install
 
-      - name: Find Xcode Project
-        id: find_project
-        run: |
-          find . -name '*.xcodeproj' -type d | head -n 1 > project_path.txt
+
 
       - name: Read Project Path
         id: read_project_path
