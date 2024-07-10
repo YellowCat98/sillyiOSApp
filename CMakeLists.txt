@@ -27,6 +27,6 @@ set(CMAKE_CXX_STANDARD 11)
 # Link iOS frameworks (example with Foundation)
 find_library(FOUNDATION_LIBRARY Foundation)
 target_link_libraries(${PROJECT_NAME}
-    ${FOUNDATION_LIBRARY}
+    ${UIKIT_LIBRARY}
     # Add other iOS frameworks here as needed
 )
