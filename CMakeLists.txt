@@ -1,33 +1,23 @@
-cmake_minimum_required(VERSION 3.10)
-project(MyApp)
+cmake_minimum_required(VERSION 3.20)
+project(sillyiOSApp)
 
-# Set iOS specific options
-set(CMAKE_OSX_SYSROOT "iphoneos" CACHE STRING "iOS SDK")
-set(CMAKE_OSX_ARCHITECTURES "arm64" CACHE STRING "iOS architectures")
-set(CMAKE_SYSROOT "/Applications/Xcode_15.0.1.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk")
+# Set the iOS platform and minimum version
+set(CMAKE_SYSTEM_NAME iOS)
+set(CMAKE_OSX_ARCHITECTURES arm64 CACHE STRING "Build architecture for iOS")
 
-# Specify source files (Objective-C++ in this case)
-set(SOURCES
-    hello.mm  # Assuming this is your source file (Objective-C++)
-)
+# Set the minimum iOS version
+set(CMAKE_OSX_DEPLOYMENT_TARGET "17.0" CACHE STRING "Minimum iOS version")
 
-message("CMAKE_SYSROOT: ${CMAKE_SYSROOT}")
+# Set the SDK path
+set(CMAKE_OSX_SYSROOT "iphoneos" CACHE STRING "iOS SDK path")
 
+# Add UIKit framework
+find_library(UIKIT UIKit)
+if(UIKIT)
+    target_link_libraries(your_target_name_here ${UIKIT})
+else()
+    message(FATAL_ERROR "UIKit not found")
+endif()
 
-# Add a library target
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
-
-# Set the output directory for the library
-set_target_properties(${PROJECT_NAME} PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib
-)
-
-# Set Objective-C++ flags
-set(CMAKE_OBJCXX_FLAGS "${CMAKE_OBJCXX_FLAGS} -ObjC++")
-
-# Set C++ standard (adjust as needed)
-set(CMAKE_CXX_STANDARD 11)
-
-# Link iOS frameworks (example with Foundation and UIKit)
-target_link_libraries(${PROJECT_NAME} "-framework Foundation")
-target_link_libraries(${PROJECT_NAME} "-framework UIKit")
+# Add your executable or library here
+add_executable(your_target_name_here hello.mm)
