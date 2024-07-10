@@ -4,6 +4,7 @@ project(MyApp)
 # Set iOS specific options
 set(CMAKE_OSX_SYSROOT "iphoneos" CACHE STRING "iOS SDK")
 set(CMAKE_OSX_ARCHITECTURES "arm64" CACHE STRING "iOS architectures")
+set(CMAKE_SYSROOT "/Applications/Xcode_15.0.1.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk")
 
 # Specify source files (Objective-C++ in this case)
 set(SOURCES
