@@ -11,6 +11,9 @@ set(SOURCES
     hello.mm  # Assuming this is your source file (Objective-C++)
 )
 
+message("CMAKE_SYSROOT: ${CMAKE_SYSROOT}")
+
+
 # Add a library target
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
