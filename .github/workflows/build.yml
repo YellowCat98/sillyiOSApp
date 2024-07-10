@@ -1,4 +1,4 @@
-name: Build and Upload IPA
+name: Build and Package iOS App
 
 on:
   push:
@@ -11,31 +11,33 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-      - name: Install CocoaPods
+      - name: Install CMake
         run: |
-          brew install cocoapods
-          pod install
+          brew install cmake
 
-      - name: Read Project Path
-        id: read_project_path
+      - name: Check Xcode Version
+        run: /usr/bin/xcodebuild -version
+
+      - name: Configure CMake
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build --config Release --target ALL_BUILD
+
+      - name: Package IPA
         run: |
-          PROJECT_PATH=$(cat project_path.txt)  # Replace with how you determine your project path
-          echo "::set-output name=path::$PROJECT_PATH"
+          xcodebuild -workspace YourWorkspace.xcworkspace -scheme YourScheme -configuration Release clean archive -archivePath ${{github.workspace}}/build/YourApp.xcarchive
+          xcodebuild -exportArchive -archivePath ${{github.workspace}}/build/YourApp.xcarchive -exportPath ${{github.workspace}}/build -exportOptionsPlist exportOptions.plist
 
-      - name: Build IPA
-        run: |
-          xcodebuild -workspace "${{ steps.read_project_path.outputs.path }}/YourApp.xcworkspace" -scheme YourScheme -configuration Release -sdk iphoneos build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-
-      - name: Archive IPA
-        run: |
-          xcodebuild -exportArchive -archivePath "${{ steps.read_project_path.outputs.path }}/build/YourApp.xcarchive" -exportOptionsPlist ExportOptions.plist -exportPath "${{ steps.read_project_path.outputs.path }}/build"
-
-      - name: Upload IPA artifact
+      - name: Upload IPA Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: YourApp.ipa
-          path: ${{ steps.read_project_path.outputs.path }}/build/YourApp.ipa
+          name: YourApp-iOS
+          path: ${{github.workspace}}/build/*.ipa
