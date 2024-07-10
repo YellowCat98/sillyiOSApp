@@ -11,13 +11,5 @@ set(CMAKE_OSX_DEPLOYMENT_TARGET "17.0" CACHE STRING "Minimum iOS version")
 # Set the SDK path
 set(CMAKE_OSX_SYSROOT "iphoneos" CACHE STRING "iOS SDK path")
 
-# Add UIKit framework
-find_library(UIKIT UIKit)
-if(UIKIT)
-    target_link_libraries(your_target_name_here ${UIKIT})
-else()
-    message(FATAL_ERROR "UIKit not found")
-endif()
-
 # Add your executable or library here
-add_executable(your_target_name_here hello.mm)
+add_executable(sillyiOSApp hello.mm)
