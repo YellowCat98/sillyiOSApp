@@ -1,43 +1,47 @@
-name: Build and Package iOS App
+name: Build iOS Dylib
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
+    name: Build iOS Dylib
     runs-on: macos-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Install CMake
-        run: |
-          brew install cmake
-
-      - name: Check Xcode Version
-        run: /usr/bin/xcodebuild -version
+        run: brew install cmake
 
       - name: Configure CMake
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release
+        run: cmake -S . -B build -G Xcode
+
+      
 
       - name: Build
-        run: cmake --build ${{github.workspace}}/build --config Release
-        
-      - name: Package IPA
-        run: |
-          xcodebuild -workspace YourWorkspace.xcworkspace -scheme YourScheme -configuration Release clean archive -archivePath ${{github.workspace}}/build/YourApp.xcarchive
-          xcodebuild -exportArchive -archivePath ${{github.workspace}}/build/YourApp.xcarchive -exportPath ${{github.workspace}}/build -exportOptionsPlist exportOptions.plist
+        run: cmake --build build --config Release
+      
+      - name: Get all files in build directory
+        run: ls /Users/runner/work/CharlieEngine/CharlieEngine/build/Release-iphoneos/
 
-      - name: Upload IPA Artifact
-        uses: actions/upload-artifact@v2
+      - name: Upload dylib
+        uses: actions/upload-artifact@v3
         with:
-          name: YourApp-iOS
-          path: ${{github.workspace}}/build/*.ipa
+          name: CharlieEngineInject.dylib
+          path: /Users/runner/work/CharlieEngine/CharlieEngine/build/Release-iphoneos/*.dylib
+      
+      - name: Upload Nightly
+        uses: andelf/nightly-release@main
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: nightly
+          name: 'Nightly'
+          prerelease: true
+          body: |
+            This is the latest build for commit ${{ github.sha }}
+            This build isn't stable. use at your own risk.
+          files: /Users/runner/work/CharlieEngine/CharlieEngine/build/Release-iphoneos/*.ipa
