@@ -23,6 +23,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE_BUNDLE_NAME "Skibidi"
     XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "YellowCat98"
     XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "skibidiskibidigyatt"
+    XCODE_ATTRIBUTE_PROVISIONING_PROFILE_SPECIFIER "skibidibooo"
 )
 
 # Link against the UIKit framework (required for iOS apps)
