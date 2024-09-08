@@ -17,7 +17,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -stdlib=libc++")
 set(CMAKE_OBJCXX_FLAGS "${CMAKE_OBJCXX_FLAGS} -std=c++17 -fobjc-arc")
 
 # Add source files (Objective-C++ and C++)
-file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.mm)
+file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.mm ${CMAKE_SOURCE_DIR}/src/*.hpp)
 
 # Create a shared library
 add_executable(MyiOSLib ${SOURCES})
