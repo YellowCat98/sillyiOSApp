@@ -46,7 +46,7 @@ jobs:
     - name: Create Unsigned IPA
       run: |
         mkdir -p Payload
-        cp -r /Users/runner/Library/Developer/Xcode/DerivedData/MyiOSProject-eyaznwmnzttjdpedyblcmhizluep/ArchiveIntermediates/MyiOSLib/IntermediateBuildFilesPath/UninstalledProducts/iphoneos/MyiOSLib.app Payload/
+        cp -r build/Release-iphoneos/MyiOSLib.app Payload/
         zip -r MyiOSLib.ipa Payload/
 
     - name: Upload unsigned IPA
