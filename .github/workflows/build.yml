@@ -1,44 +1,41 @@
-name: Build iOS ipa
+name: iOS Build
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
-    name: Build iOS ipa
+  build-ios:
     runs-on: macos-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Build with xcodebuild
-        run: |
-          xcodebuild -project SillyiOSApp.xcodeproj \
-                     -scheme SillyiOSApp \
-                     -sdk iphoneos \
-                     -configuration Release \
-                     CODE_SIGNING_ALLOWED=NO
+    - name: Install CMake
+      run: brew install cmake
 
-      - name: Get all files in build directory
-        run: ls /Users/runner/work/sillyiOSApp/sillyiOSApp/build/Release-iphoneos/
+    - name: Install Xcode command line tools
+      run: sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 
-      - name: Upload ipa
-        uses: actions/upload-artifact@v3
-        with:
-          name: sillyiOSApp.ipa
-          path: /Users/runner/work/sillyiOSApp/sillyiOSApp/build/Release-iphoneos/*.ipa
-      
-      - name: Upload Nightly
-        uses: andelf/nightly-release@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: nightly
-          name: 'Nightly'
-          prerelease: true
-          body: |
-            This is the latest build for commit ${{ github.sha }}.
-            This build isn't stable. Use at your own risk.
-          files: /Users/runner/work/sillyiOSApp/sillyiOSApp/build/Release-iphoneos/*.ipa
+    - name: Configure CMake for iOS
+      run: |
+        cmake -G Xcode \
+              -DCMAKE_SYSTEM_NAME=iOS \
+              -DCMAKE_OSX_ARCHITECTURES=arm64 \
+              -DCMAKE_OSX_SYSROOT=iphoneos \
+              -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
+              -B build
+
+    - name: Build iOS Project
+      run: cmake --build build --config Release --target MyiOSLib
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: MyiOSLib
+        path: build/Release-iphoneos/
