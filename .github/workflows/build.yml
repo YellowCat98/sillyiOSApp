@@ -39,6 +39,9 @@ jobs:
           -archivePath build/MyiOSLib.xcarchive \
           CODE_SIGNING_REQUIRED=NO \
           CODE_SIGNING_ALLOWED=NO
+      
+    - name: cehck if that thing exosts
+      run: ls build/*
 
     - name: Create Unsigned IPA
       run: |
