@@ -34,7 +34,7 @@ jobs:
     - name: Build iOS Project (Archive without Signing)
       run: |
         xcodebuild archive \
-          -project build/MyiOSProject.xcodeproj \
+          -project build/sillyiOSApp.xcodeproj \
           -scheme sillyiOSApp \
           -archivePath build/sillyiOSApp.xcarchive \
           CODE_SIGNING_REQUIRED=NO \
