@@ -1,6 +1,5 @@
 // MainViewController.mm
 
-#import "MainViewController.h"
 #import <UIKit/UIKit.h>
 
 @implementation MainViewController
