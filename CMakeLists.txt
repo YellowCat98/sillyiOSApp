@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(MyiOSProject)
+project(MyiOSProject LANGUAGES OBJCXX)
 
 # Set iOS platform
 set(CMAKE_SYSTEM_NAME iOS)

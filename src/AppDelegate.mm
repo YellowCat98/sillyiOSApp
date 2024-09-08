@@ -1,4 +1,5 @@
 #import "AppDelegate.hpp"
+#import "MainViewController.hpp"
 
 @implementation AppDelegate
 
