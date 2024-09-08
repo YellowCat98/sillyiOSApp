@@ -28,6 +28,11 @@ target_link_libraries(MyiOSLib
   "-framework Foundation"
 )
 
+set_target_properties(MyiOSApp PROPERTIES
+    XCODE_ATTRIBUTE_PRODUCT_NAME "sillyiOSApp"
+    XCODE_ATTRIBUTE_BUNDLE_IDENTIFIER "com.yellowcat98.sillyiosapp"
+)
+
 # Output directory for the library
 set_target_properties(MyiOSLib PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/output
