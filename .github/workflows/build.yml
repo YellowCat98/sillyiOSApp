@@ -1,4 +1,4 @@
-name: iOS Build
+name: iOS Build (Unsigned IPA)
 
 on:
   push:
@@ -31,11 +31,23 @@ jobs:
               -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
               -B build
 
-    - name: Build iOS Project
-      run: cmake --build build --config Release --target MyiOSLib
+    - name: Build iOS Project (Archive without Signing)
+      run: |
+        xcodebuild archive \
+          -project build/MyiOSProject.xcodeproj \
+          -scheme MyiOSLib \
+          -archivePath build/MyiOSLib.xcarchive \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
 
-    - name: Upload build artifacts
+    - name: Create Unsigned IPA
+      run: |
+        mkdir -p Payload
+        cp -r build/MyiOSLib.xcarchive/Products/Applications/*.app Payload/
+        zip -r MyiOSLib.ipa Payload/
+
+    - name: Upload unsigned IPA
       uses: actions/upload-artifact@v3
       with:
-        name: MyiOSLib
-        path: build/Release-iphoneos/
+        name: MyiOSLib-unsigned
+        path: MyiOSLib.ipa
