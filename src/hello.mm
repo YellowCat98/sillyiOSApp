@@ -1,8 +1,10 @@
-// MainViewController.mm
-
 #import <UIKit/UIKit.h>
 
-@implementation MainViewController : NSObject
+// Declare the interface for MainViewController
+@interface MainViewController : UIViewController
+@end
+
+@implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
