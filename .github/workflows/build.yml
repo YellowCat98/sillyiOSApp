@@ -35,8 +35,8 @@ jobs:
       run: |
         xcodebuild archive \
           -project build/MyiOSProject.xcodeproj \
-          -scheme MyiOSLib \
-          -archivePath build/MyiOSLib.xcarchive \
+          -scheme sillyiOSApp \
+          -archivePath build/sillyiOSApp.xcarchive \
           CODE_SIGNING_REQUIRED=NO \
           CODE_SIGNING_ALLOWED=NO
       
@@ -44,16 +44,16 @@ jobs:
       run: ls -R build/..
     
     - name: Convert info.plist to XML
-      run: plutil -convert xml1 build/Release-iphoneos/MyiOSLib.app/info.plist
+      run: plutil -convert xml1 build/Release-iphoneos/sillyiOSApp.app/info.plist
 
     - name: Create Unsigned IPA
       run: |
         mkdir -p Payload
-        cp -r build/Release-iphoneos/MyiOSLib.app Payload/
-        zip -r MyiOSLib.ipa Payload/
+        cp -r build/Release-iphoneos/sillyiOSApp.app Payload/
+        zip -r sillyiOSApp.ipa Payload/
 
     - name: Upload unsigned IPA
       uses: actions/upload-artifact@v3
       with:
-        name: MyiOSLib-unsigned
-        path: MyiOSLib.ipa
+        name: sillyiOSApp-unsigned
+        path: sillyiOSApp.ipa

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(MyiOSProject LANGUAGES OBJCXX)
+project(sillyiOSApp LANGUAGES OBJCXX)
 
 # Set iOS platform
 set(CMAKE_SYSTEM_NAME iOS)
@@ -20,20 +20,20 @@ set(CMAKE_OBJCXX_FLAGS "${CMAKE_OBJCXX_FLAGS} -std=c++17 -fobjc-arc")
 file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.mm ${CMAKE_SOURCE_DIR}/src/*.hpp)
 
 # Create a shared library
-add_executable(MyiOSLib ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Link necessary frameworks
-target_link_libraries(MyiOSLib
+target_link_libraries(${PROJECT_NAME}
   "-framework UIKit"
   "-framework Foundation"
 )
 
-set_target_properties(MyiOSApp PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
     XCODE_ATTRIBUTE_PRODUCT_NAME "sillyiOSApp"
     XCODE_ATTRIBUTE_BUNDLE_IDENTIFIER "com.yellowcat98.sillyiosapp"
 )
 
 # Output directory for the library
-set_target_properties(MyiOSLib PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/output
 )
