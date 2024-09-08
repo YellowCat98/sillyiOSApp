@@ -20,7 +20,7 @@ set(CMAKE_OBJCXX_FLAGS "${CMAKE_OBJCXX_FLAGS} -std=c++17 -fobjc-arc")
 file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.mm)
 
 # Create a shared library
-add_executable(MyiOSLib SHARED ${SOURCES})
+add_executable(MyiOSLib ${SOURCES})
 
 # Link necessary frameworks
 target_link_libraries(MyiOSLib
