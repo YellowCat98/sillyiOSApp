@@ -2,7 +2,7 @@
 
 #import <UIKit/UIKit.h>
 
-@implementation MainViewController
+@implementation MainViewController : NSObject
 
 - (void)viewDidLoad {
     [super viewDidLoad];
