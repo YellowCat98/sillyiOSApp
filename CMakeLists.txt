@@ -29,8 +29,9 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
+    MACOSX_BUNDLE_GUI_IDENTIFIER "com.yellowcat98.sillyiosapp"
     XCODE_ATTRIBUTE_PRODUCT_NAME "sillyiOSApp"
-    XCODE_ATTRIBUTE_BUNDLE_IDENTIFIER "com.yellowcat98.sillyiosapp"
+    XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_SOURCE_DIR}/Info.plist"
 )
 
 # Output directory for the library
