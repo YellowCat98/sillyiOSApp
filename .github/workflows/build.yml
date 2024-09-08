@@ -41,7 +41,7 @@ jobs:
           CODE_SIGNING_ALLOWED=NO
       
     - name: cehck if that thing exosts
-      run: ls -R build/../output
+      run: ls -R build/..
     
     - name: Convert info.plist to XML
       run: plutil -convert xml1 build/Release-iphoneos/MyiOSLib.app/info.plist
