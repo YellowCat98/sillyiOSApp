@@ -7,15 +7,17 @@ set(CMAKE_OSX_ARCHITECTURES "arm64")
 set(CMAKE_OSX_SYSROOT "iphoneos")
 set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0") # Set your deployment target
 
+# Disable code signing
+set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "")
+set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED "NO")
+set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED "NO")
+
 # Add Objective-C++ and C++ flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -stdlib=libc++")
 set(CMAKE_OBJCXX_FLAGS "${CMAKE_OBJCXX_FLAGS} -std=c++17 -fobjc-arc")
 
-# Include directories
-include_directories(${CMAKE_SOURCE_DIR}/include)
-
 # Add source files (Objective-C++ and C++)
-file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp ${CMAKE_SOURCE_DIR}/src/*.mm)
+file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.mm)
 
 # Create a shared library
 add_library(MyiOSLib SHARED ${SOURCES})
