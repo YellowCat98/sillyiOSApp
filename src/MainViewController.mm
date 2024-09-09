@@ -21,7 +21,7 @@
 
     UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
 
-    [button setTitle@"Fart" forState:UIControlStateNormal];
+    [button setTitle:@"Fart" forState:UIControlStateNormal];
 
     button.frame = CGRectMake(100, 100, 200, 50);
 
