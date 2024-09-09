@@ -8,9 +8,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Set the background color
-    self.view.backgroundColor = [UIColor whiteColor];
+
     
     // Create a UILabel
     UILabel *helloLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 100, 200, 50)];
