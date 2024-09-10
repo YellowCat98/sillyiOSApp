@@ -40,6 +40,23 @@ public class MainViewController: UIViewController {
     }
 
     @objc public func buttonPressed(_ sender: UIButton) {
-        print("Hello!!!!")
+        let alertController = UIAlertController(
+            title: "Hello.",
+            message: "Are you skibidi?",
+            preferredStyle: .alert
+        )
+
+        let okAction = UIAlertAction(title: "Yes", style: .default) { _ in 
+            print("User is Skibidi.")
+        }
+
+        let noAction = UIAlertAction(title: "No.", style: .cancel) _ in {
+            print("User is not skibidi.")
+        }
+
+        alertController.addAction(okAction)
+        alertController.addAction(noAction)
+
+        present(alertControler, animated: true, completion: nil)
     }
 }
