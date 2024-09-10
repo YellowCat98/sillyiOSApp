@@ -35,7 +35,7 @@
 - (void)buttonTapped {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hello"
                                                                     message:@"You are skibidi."
-                                                                preferredStyle:UIAlertControllerStyleAlert]
+                                                                preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Great!"
                                                         style:UIAlertActionStyleDefault
