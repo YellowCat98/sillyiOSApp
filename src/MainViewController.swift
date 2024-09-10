@@ -57,6 +57,6 @@ public class MainViewController: UIViewController {
         alertController.addAction(okAction)
         alertController.addAction(noAction)
 
-        present(alertControler, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
 }
