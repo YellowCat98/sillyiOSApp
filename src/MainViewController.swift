@@ -12,7 +12,7 @@ public class MainViewController: UIViewController {
         return label
     }()
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
