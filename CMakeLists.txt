@@ -23,9 +23,11 @@ file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.mm ${CMAKE_SOURCE_DIR}/src/*
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Link necessary frameworks
+find_package(Swift REQUIRED)
 target_link_libraries(${PROJECT_NAME}
   "-framework UIKit"
   "-framework Foundation"
+  swiftCore
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
