@@ -16,7 +16,6 @@ public class MainViewController: UIViewController {
     let button: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Fart", for: .normal)
-        button.textAlignment = .left
         button.backgroundColor = .yellow
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -32,7 +31,9 @@ public class MainViewController: UIViewController {
         // Set constraints for the label
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
 
         button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
