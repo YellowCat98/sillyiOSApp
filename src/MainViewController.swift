@@ -1,7 +1,7 @@
 import UIKit
 
 @objc(MainViewController)
-class MainViewController: UIViewController {
+public class MainViewController: UIViewController {
 
     let label: UILabel = {
         let label = UILabel()
