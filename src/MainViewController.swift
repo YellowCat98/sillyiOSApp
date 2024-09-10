@@ -50,7 +50,7 @@ public class MainViewController: UIViewController {
             print("User is Skibidi.")
         }
 
-        let noAction = UIAlertAction(title: "No.", style: .cancel) _ in {
+        let noAction = UIAlertAction(title: "No.", style: .cancel) { _ in
             print("User is not skibidi.")
         }
 
