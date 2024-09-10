@@ -33,7 +33,19 @@
 }
 
 - (void)buttonTapped {
-    NSLog(@"Hello World");
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hello"
+                                                                    message:@"You are skibidi."
+                                                                preferredStyle:UIAlertControllerStyleAlert]
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Great!"
+                                                        style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertIcon * _Nonnull action) {
+                                                            NSLog("You are happy with skibidi.");
+                                                        }];
+    
+    [alert addAction:okAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end
