@@ -1,5 +1,5 @@
 #import "AppDelegate.hpp"
-#import "MainViewController.hpp"
+#import "sillyiOSApp-Swift.h"
 
 @implementation AppDelegate
 
