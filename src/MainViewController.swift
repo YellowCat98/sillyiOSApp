@@ -1,4 +1,5 @@
 import UIKit
+import Foundation
 
 @objc(MainViewController)
 public class MainViewController: UIViewController {
@@ -47,11 +48,11 @@ public class MainViewController: UIViewController {
         )
 
         let okAction = UIAlertAction(title: "Yes", style: .default) { _ in 
-            print("User is Skibidi.")
+            NSLog("User is Skibidi.")
         }
 
         let noAction = UIAlertAction(title: "No.", style: .cancel) { _ in
-            print("User is not skibidi.")
+            NSLog("User is not skibidi.")
         }
 
         alertController.addAction(okAction)
