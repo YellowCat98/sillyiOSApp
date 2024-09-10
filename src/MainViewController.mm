@@ -42,8 +42,15 @@
                                                         handler:^(UIAlertAction * _Nonnull action) {
                                                             NSLog(@"You are happy with skibidi.");
                                                         }];
+
+    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"Ungreat!"
+                                                        style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * _Nonnull action) {
+                                                            NSLog(@"You are NOT with skibidi.");
+                                                        }];
     
     [alert addAction:okAction];
+    [alert addAction:noAction];
 
     [self presentViewController:alert animated:YES completion:nil];
 }
