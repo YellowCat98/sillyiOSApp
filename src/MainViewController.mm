@@ -40,7 +40,7 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Great!"
                                                         style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertIcon * _Nonnull action) {
-                                                            NSLog("You are happy with skibidi.");
+                                                            NSLog(@"You are happy with skibidi.");
                                                         }];
     
     [alert addAction:okAction];
