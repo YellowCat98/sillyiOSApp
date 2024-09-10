@@ -6,6 +6,7 @@ public class MainViewController: UIViewController {
     let label: UILabel = {
         let label = UILabel()
         label.text = "Swifttest"
+        label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
