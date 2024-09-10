@@ -49,8 +49,15 @@
                                                             NSLog(@"You are NOT with skibidi.");
                                                         }];
     
+    UIAlertAction *notFunnyAction = [UIAlertAction actionWithTitle:@"Not funny!"
+                                                        style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * _Nonnull action) {
+                                                        NSLog(@"shut up!");
+                                                        }];
+    
     [alert addAction:okAction];
     [alert addAction:noAction];
+    [alert addAction:notFunnyAction];
 
     [self presentViewController:alert animated:YES completion:nil];
 }
