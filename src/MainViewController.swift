@@ -22,8 +22,11 @@ public class MainViewController: UIViewController {
         return button
     }()
 
-    let toolbar = UIToolbar()
-    toolbar.translatesAutoresizingMaskIntoConstraints = false
+    let toolbar: UIToolbar = {
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        return toolbar
+    }()
+    
     
     override public func viewDidLoad() {
         super.viewDidLoad()
