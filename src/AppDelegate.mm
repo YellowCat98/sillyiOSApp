@@ -4,10 +4,9 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //self.window.backgroundColor = [UIColor whiteColor];
 
-    self.window.borderColor = [UIColor whiteColor];
     // Set the root view controller
     self.window.rootViewController = [[MainViewController alloc] init];
     [self.window makeKeyAndVisible];
