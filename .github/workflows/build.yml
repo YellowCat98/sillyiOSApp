@@ -46,6 +46,9 @@ jobs:
     - name: Convert info.plist to XML
       run: plutil -convert xml1 build/Release-iphoneos/sillyiOSApp.app/info.plist
 
+    - name: Include Storyboard in .appbundle
+      run: cp ${{ github.workspace }}/LaunchScreen.storyboard build/Release-iphoneos/sillyiOSApp.app/
+
     - name: Create Unsigned IPA
       run: |
         mkdir -p Payload
