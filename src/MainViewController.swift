@@ -25,6 +25,9 @@ public class MainViewController: UIViewController {
     let toolbar: UIToolbar = {
         let toolbar = UIToolbar()
         toolbar.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.barTintColor = .white
+        toolbar.tintColor = .systemBlue
+        toolbar.isTranslucent = true
         return toolbar
     }()
     
