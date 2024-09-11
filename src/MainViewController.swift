@@ -21,6 +21,9 @@ public class MainViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+
+    let toolbar = UIToolbar()
+    toolbar.translatesAutoresizingMaskIntoConstraints = false
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,7 @@ public class MainViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(label)
         view.addSubview(button)
+        view.addSubview(toolbar)
 
         // Set constraints for the label
         NSLayoutConstraint.activate([
