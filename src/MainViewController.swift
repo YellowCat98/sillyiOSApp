@@ -35,7 +35,7 @@ public class MainViewController: UIViewController {
 
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
-        toolbar.items = [firstButton, flexibleSpace, secondButton]
+        toolbar.items = [firstButton, /*flexibleSpace,*/ secondButton]
         return toolbar
     }()
 
