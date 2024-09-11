@@ -25,7 +25,7 @@ public class MainViewController: UIViewController {
     let toolbar: UIToolbar = {
         let toolbar = UIToolbar()
         toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.barTintColor = .white
+        toolbar.barTintColor = .gray
         toolbar.tintColor = .systemBlue
         toolbar.isTranslucent = true
 
@@ -62,6 +62,10 @@ public class MainViewController: UIViewController {
             label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+
+            toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
 
         button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
