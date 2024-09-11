@@ -28,8 +28,24 @@ public class MainViewController: UIViewController {
         toolbar.barTintColor = .white
         toolbar.tintColor = .systemBlue
         toolbar.isTranslucent = true
+
+        let firstButton = UIBarButtonItem(title: "Hello", style: .plain, target: self, action: #selector(firstAction))
+
+        let secondButton = UIBarButtonItem(title: "HelloO", style: .plain, target: self, action: #selector(secondAction))
+
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+
+        toolbar.items = [firstButton, flexibleSpace, secondButton]
         return toolbar
     }()
+
+    @objc public func firstAction() {
+        NSLog("Hello")
+    }
+
+    @objc public func secondAction() {
+        NSLog("HelloO")
+    }
     
     
     override public func viewDidLoad() {
