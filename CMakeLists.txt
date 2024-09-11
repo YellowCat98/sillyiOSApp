@@ -12,28 +12,28 @@ set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "")
 set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED "NO")
 set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED "NO")
 
-# Add Objective-C++ and C++ flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -stdlib=libc++")
 set(CMAKE_OBJCXX_FLAGS "${CMAKE_OBJCXX_FLAGS} -std=c++17 -fobjc-arc")
 
-# Add source files (Objective-C++ and C++)
 file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.mm ${CMAKE_SOURCE_DIR}/src/*.hpp ${CMAKE_SOURCE_DIR}/src/*.swift)
 
-# Create a shared library
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_link_libraries(${PROJECT_NAME}
-  "-framework UIKit"
-  "-framework Foundation"
+  	"-framework UIKit"
+  	"-framework Foundation"
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER "com.yellowcat98.sillyiosapp"
+	MACOSX_BUNDLE_GUI_IDENTIFIER "com.yellowcat98.sillyiosapp"
     XCODE_ATTRIBUTE_PRODUCT_NAME "sillyiOSApp"
     XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_SOURCE_DIR}/Info.plist"
 )
 
-# Output directory for the library
+set_target_properties(${PROJECTT_NAME} PROPERTIES
+	XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME "LaunchScreen"
+)
+
 set_target_properties(${PROJECT_NAME} PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/output
 )
