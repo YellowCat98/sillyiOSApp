@@ -23,6 +23,7 @@ public class MainViewController: UIViewController {
     }()
 
     let toolbar: UIToolbar = {
+        let toolbar = UIToolbar()
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         return toolbar
     }()
