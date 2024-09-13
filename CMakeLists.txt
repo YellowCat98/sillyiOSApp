@@ -5,7 +5,7 @@ project(sillyiOSApp LANGUAGES OBJCXX Swift)
 set(CMAKE_SYSTEM_NAME iOS)
 set(CMAKE_OSX_ARCHITECTURES "arm64")
 set(CMAKE_OSX_SYSROOT "iphoneos")
-set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0") # Set your deployment target
+set(CMAKE_OSX_DEPLOYMENT_TARGET "14.0") # Set your deployment target
 
 # Disable code signing
 set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "")
