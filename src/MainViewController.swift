@@ -29,13 +29,15 @@ public class MainViewController: UIViewController {
         toolbar.tintColor = .systemBlue
         toolbar.isTranslucent = true
 
-        let firstButton = UIBarButtonItem(title: "Hello", style: .plain, target: self, action: #selector(firstAction))
+        let firstImage = UIImage(systemName: "house.fill")
+        let firstButton = UIBarButtonItem(image: firstImage, style: .plain, target: self, action: #selector(firstAction))
 
-        let secondButton = UIBarButtonItem(title: "HelloO", style: .plain, target: self, action: #selector(secondAction))
+        let secondImage = UIImage(systemName: "bell.fill")
+        let secondButton = UIBarButtonItem(image:secondImage, style: .plain, target: self, action: #selector(secondAction))
 
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
-        toolbar.items = [firstButton, /*flexibleSpace,*/ secondButton]
+        toolbar.items = [firstButton, flexibleSpace, secondButton]
         return toolbar
     }()
 
